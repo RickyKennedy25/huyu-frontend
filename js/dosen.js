@@ -1,6 +1,13 @@
 $(document).ready(function() {
   $.ajax({
     method: "GET",
+    url: "/api/user/loggedin",
+    success: function(response) {
+      $("#name2").text(response.name);
+    }
+  })
+  $.ajax({
+    method: "GET",
     url: "/api/hello-dosen",
     success: function(response) {
       $("#name").text(response);
@@ -23,5 +30,9 @@ $(document).ready(function() {
         window.location = "index.html";
       }
     });
+  });
+
+  $("#update").click(function() {
+    window.location = "update.html";
   });
 });

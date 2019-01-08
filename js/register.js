@@ -43,6 +43,11 @@ $(document).ready(function() {
               }
             }
           });
+        },
+        statusCode: {
+          400: function() {
+            alert("username already exist!");
+          }
         }
       });
     }
