@@ -1,5 +1,6 @@
 $(document).ready(function() {
-  $("#submitregister").click(function() {
+  $("#submitregister").click(function(event) {
+    event.preventDefault();
     let name = $("#name").val();
     let username = $("#username").val();
     let password = $("#password").val();
@@ -24,17 +25,24 @@ $(document).ready(function() {
     else {
       $.ajax({
         method: "POST",
-        url: "/user",
+        url: "/api/user",
         data: JSON.stringify(request),
         dataType: "json",
         contentType: "application/json",
         success: function(response) {
-          if (response.role === "ROLE_DOSEN") {
-            window.location = "dosen.html"
-          }
-          else if (response.role === "ROLE_MAHASISWA") {
-            window.location = "mahasiswa.html"
-          }
+          $.ajax({
+            method: "post",
+            url: "/api/login",
+            data: "username=" + username + "&password=" + password,
+            success: (data) => {
+              if (data.role === "ROLE_MAHASISWA") {
+                window.location = "mahasiswa.html"
+              }
+              else if (data.role === "ROLE_DOSEN") {
+                window.location = "dosen.html"
+              }
+            }
+          });
         }
       });
     }
