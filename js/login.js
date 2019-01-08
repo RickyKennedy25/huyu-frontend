@@ -1,7 +1,21 @@
 $(document).ready(function () {
+  $.ajax({
+    method: "GET",
+    url: "/hello-dosen",
+    success: function() {
+      window.location = "dosen.html"
+    }
+  });
+
+  $.ajax({
+    method: "GET",
+    url: "/hello-mahasiswa",
+    success: function() {
+      window.location = "mahasiswa.html"
+    }
+  });
 
   $("#submitlogin").click(function () {
-
     let username = $("#username").val();
     let password = $("#password").val();
     console.log(username + " " + password);
