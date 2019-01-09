@@ -59,6 +59,14 @@ $(document).ready(function() {
                 }
               }
             });
+          },
+          statusCode: {
+            401: function() {
+              window.location = "index.html";
+            },
+            400: function() {
+              alert("username already exist");
+            }
           }
         });
       });
